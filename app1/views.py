@@ -11,10 +11,13 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
 
 def index(request):
     posts = Women.objects.all()
+    cats = Category.objects.all()
     context = {
         'posts': posts,
-        "title": "Главная",
-        'menu': menu
+        'cats': cats,
+        "title": "Главная страница",
+        'menu': menu,
+        'cat_selected': 0,
     }
     return render(request, 'app1/index.html', context=context)
 
@@ -41,3 +44,19 @@ def show_post(request, post_id):
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
+
+def show_category(request, cat_id):
+    posts = Women.objects.filter(cat_id=cat_id)
+    cats = Category.objects.all()
+
+    if len(posts) == 0:
+        raise  Http404()
+
+    context = {
+        'posts': posts,
+        'cats': cats,
+        "title": "Рубрики",
+        'menu': menu,
+        'cat_selected': cat_id,
+    }
+    return render(request, 'app1/index.html', context=context)
