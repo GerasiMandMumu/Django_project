@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
+from .forms import AddPostForm
 from .models import *
 
 menu = [{'title': "О сайте", 'url_name': 'about'},
@@ -26,7 +27,8 @@ def about(request):
 
 
 def addpage(request):
-    return HttpResponse('Добавление статьи')
+    form = AddPostForm()
+    return render(request, 'app1/addpage.html', {"form": form, 'menu': menu, 'title': 'Добавление статьи'})
 
 
 def contact(request):
