@@ -25,12 +25,11 @@ def index(request):
 def about(request):
     return render(request, 'app1/about.html', {"title": "О сайте", 'menu': menu})
 
-
+# Добавление статьи
 def addpage(request):
     if request.method == 'POST':
         form = AddPostForm(request.POST, request.FILES)
         if form.is_valid():
-            #print(form.cleaned_data)
             form.save()
             return redirect('home')
     else:
@@ -46,6 +45,7 @@ def login(request):
     return HttpResponse('Авторизация')
 
 
+# Вывод статьи
 def show_post(request, post_slug):
     post = get_object_or_404(Women, slug=post_slug)
 
@@ -62,6 +62,7 @@ def show_post(request, post_slug):
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
 
+#
 def show_category(request, cat_id):
     posts = Women.objects.filter(cat_id=cat_id)
 
