@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import ListView
 
 from .forms import AddPostForm
 from .models import *
@@ -10,16 +11,20 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Войти", 'url_name': 'login'}]
 
 
-def index(request):
-    posts = Women.objects.all()
+class WomenHome(ListView):
+    model = Women
+    template_name = 'app1/index.html'
 
-    context = {
-        'posts': posts,
-        "title": "Главная страница",
-        'menu': menu,
-        'cat_selected': 0,
-    }
-    return render(request, 'app1/index.html', context=context)
+# def index(request):
+#     posts = Women.objects.all()
+#
+#     context = {
+#         'posts': posts,
+#         "title": "Главная страница",
+#         'menu': menu,
+#         'cat_selected': 0,
+#     }
+#     return render(request, 'app1/index.html', context=context)
 
 
 def about(request):
