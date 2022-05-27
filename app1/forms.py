@@ -14,12 +14,12 @@ class AddPostForm(forms.ModelForm):
         fields = ['title', 'slug', 'content', 'photo', 'is_published', 'cat']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-input'}),
-            'content': forms.Textarea(attrs={'cols': 60, 'rows': 10})
+            'content': forms.Textarea(attrs={'cols': 50, 'rows': 10})
         }
 
     def clean_title(self):
         title = self.cleaned_data['title']
-        if len(title) > 200:
-            raise ValidationError('Длина превышает 200 символов')
+        if len(title) > 100:
+            raise ValidationError('Длина превышает 100 символов')
 
         return title

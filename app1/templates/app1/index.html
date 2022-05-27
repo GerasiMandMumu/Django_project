@@ -12,9 +12,9 @@
                     <p><img class="img-article-left thumb" src="{{ i.photo.url }}" /></p>
                 {% endif %}
                 <h2>{{ i.title }}</h2>
-                <p>{{ i.content|linebreaks|truncatewords:50}}</p>
+                <p>{{ i.content|linebreaks|truncatewords:60}}</p>
                 <div class="clear"></div>
-                <p class="link-read-post"><a href="{{ i.get_absolute_url }}">Читать пост</a></p>
+                <p class="link-read-post"><a href="{{ i.get_absolute_url }}">Читать ...</a></p>
             </li>
         {% endfor %}
     </ul>

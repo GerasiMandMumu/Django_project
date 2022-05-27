@@ -45,7 +45,7 @@ class AddPage(CreateView):
 
 
 def contact(request):
-    return HttpResponse('Обратная связь')
+    return render(request, 'app1/contact.html', {"title": "Контакт", 'menu': menu})
 
 
 def login(request):
@@ -67,7 +67,7 @@ class ShowPost(DetailView):
 
 
 def pageNotFound(request, exception):
-    return HttpResponseNotFound('<h1>Страница не найдена</h1>')
+    return HttpResponseNotFound('<h1>Страница не найдена. Вам точно нужна эта страница??</h1>')
 
 
 class WomenCategory(ListView):
