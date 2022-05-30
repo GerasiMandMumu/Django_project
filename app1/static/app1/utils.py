@@ -8,6 +8,7 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Войти", 'url_name': 'login'}
 ]
 
+# Класс-миксин для вывода страниц
 class DataMixin:
     def get_user_context(self, **kwargs):
         context = kwargs
