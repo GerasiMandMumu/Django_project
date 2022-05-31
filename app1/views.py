@@ -1,13 +1,13 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
+from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 
 from .forms import AddPostForm
 from .models import *
-from .static.app1.utils import DataMixin
+from .utils import *
 
 
 class WomenHome(DataMixin, ListView):
@@ -27,7 +27,12 @@ class WomenHome(DataMixin, ListView):
 
 
 def about(request):
-    return render(request, 'app1/about.html', {"title": "О сайте", 'menu': menu})
+    contact_list = Women.objects.all()
+    paginator = Paginator(contact_list, 3)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'app1/about.html', {'page_obj': page_obj, "title": "О сайте", 'menu': menu})
 
 
 # Добавление статьи

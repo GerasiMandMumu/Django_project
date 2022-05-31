@@ -10,7 +10,7 @@ def get_categories(filter=None):
     else:
         return Category.objects.filter(pk=filter)
 
-@register.inclusion_tag(('app1/list_categories.html'))
+@register.inclusion_tag('app1/list_categories.html')
 def show_categories(sort=None, cat_selected=0):
     if not sort:
         cats = Category.objects.all()

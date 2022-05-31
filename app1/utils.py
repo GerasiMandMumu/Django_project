@@ -10,10 +10,11 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
 
 # Класс-миксин для вывода страниц
 class DataMixin:
+    paginate_by = 3
+
     def get_user_context(self, **kwargs):
         context = kwargs
         cats = Category.objects.annotate(Count('women'))
-        cats = Category.objects.all()
 
         user_menu = menu.copy()
         if not self.request.user.is_authenticated:
