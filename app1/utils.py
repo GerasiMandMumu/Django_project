@@ -9,7 +9,7 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
 
 # Класс-миксин для вывода страниц
 class DataMixin:
-    paginate_by = 3
+    paginate_by = 20
 
     def get_user_context(self, **kwargs):
         context = kwargs
