@@ -30,5 +30,5 @@ admin.site.register(Women, WomenAdmin)
 admin.site.register(Category, CategoryAdmin)
 
 admin.site.site_title = 'Админ-панель сайта о конфетках'
-admin.site.site_header = 'Админ-панель сайта о конфетках2'
+admin.site.site_header = 'Админ-панель сайта о конфетках'
 
